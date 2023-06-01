@@ -3,6 +3,7 @@
 
 JABBA_HOME=${JABBA_HOME:-$JABBA_DIR} # JABBA_DIR is here for backward-compatibility
 JABBA_VERSION=${JABBA_VERSION:-latest}
+JABBA_INDEX="https://raw.githubusercontent.com/WindMillCode/jabba/master/index.json"
 
 if [ "$JABBA_HOME" == "" ] || [ "$JABBA_HOME" == "$HOME/.jabba" ]; then
     JABBA_HOME=$HOME/.jabba
