@@ -6,7 +6,7 @@
     {
       "label": "docker: init jabba container",
       "type": "shell",
-      "command": "docker run -it  windmillcode/jabba-image:0.0.3 powershell"
+      "command": "docker run -it jabba_mods  windmillcode/jabba-image:0.0.3 powershell"
     },
     {
       "label": "docker: run jabba container",
