@@ -45,6 +45,7 @@ if the problem persists - please create a ticket at https://github.com/shyiko/ja
 
 @"
 `$env:JABBA_HOME="$jabbaHome"
+`$env:JABBA_INDEX="https://raw.githubusercontent.com/WindMillCode/custom_jabba/master/index.json"
 
 function jabba
 {

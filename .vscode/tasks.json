@@ -1,0 +1,35 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "docker: init jabba container",
+      "type": "shell",
+      "command": "docker run -it  windmillcode/jabba-image:0.0.3 powershell"
+    },
+    {
+      "label": "docker: run jabba container",
+      "type": "shell",
+      "command": "docker start jabba_mods",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "close": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "docker: ssh into docker container",
+      "type": "shell",
+      "command": "docker exec -it jabba_mods powershell",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+
+  ]
+}
