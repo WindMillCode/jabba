@@ -6,10 +6,10 @@
     {
       "label": "docker: init jabba container",
       "type": "shell",
-      "command": "docker run -it jabba_mods  windmillcode/jabba-image:0.0.3 powershell"
+      "command": "docker run -it --name jabba_mods  windmillcode/jabba-image:0.0.3 powershell"
     },
     {
-      "label": "docker: run jabba container",
+      "label": "docker: start jabba container",
       "type": "shell",
       "command": "docker start jabba_mods",
       "presentation": {
@@ -25,6 +25,7 @@
       "label": "docker: ssh into docker container",
       "type": "shell",
       "command": "docker exec -it jabba_mods powershell",
+      "dependsOn":"docker: start jabba container",
       "presentation": {
         "reveal": "always",
         "panel": "shared"
