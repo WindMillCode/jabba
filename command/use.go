@@ -8,8 +8,8 @@ import (
 	"runtime"
 	"strings"
 	"syscall"
-
 	"github.com/shyiko/jabba/cfg"
+	wml_utils "github.com/windmillcode/go_scripts/utils"
 	"golang.org/x/sys/windows"
 )
 
@@ -56,9 +56,9 @@ func usePath(path string) ([]string, error) {
 }
 
 func changeJavaVersionForWindows(path string) (bool, []string, error) {
-	if !amAdmin() {
-		runMeElevated()
-	}
+	// if !amAdmin() {
+	// 	runMeElevated()
+	// }
 	homedir, err := os.UserHomeDir()
 	if err != nil {
 		fmt.Printf("It seems you dont have a home directory")
@@ -69,11 +69,11 @@ func changeJavaVersionForWindows(path string) (bool, []string, error) {
 		windowsProfile := filepath.Join(homedir, "Documents", "WindowsPowerShell", "Microsoft.PowerShell_profile.ps1")
 		_, err := os.Stat(windowsProfile)
 		if err == nil {
-			destFile, err = os.OpenFile(windowsProfile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
-			if err != nil {
-				fmt.Println("An error occured while accesing the windows profile", err)
-				return true, nil, err
-			}
+			// destFile, err = os.OpenFile(windowsProfile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
+			// if err != nil {
+			// 	fmt.Println("An error occured while accesing the windows profile", err)
+			// 	return true, nil, err
+			// }
 		} else if os.IsNotExist(err) {
 			destFile, err = os.Create(windowsProfile)
 			if err != nil {
@@ -105,9 +105,8 @@ func changeJavaVersionForWindows(path string) (bool, []string, error) {
 		} else {
 			newWPContentStr = fmt.Sprintf("%s\n%s", wPContentStr, replacementValue)
 		}
-		fmt.Print(newWPContentStr)
 
-		_, err = destFile.WriteString(newWPContentStr)
+		err = wml_utils.OverwriteFile(windowsProfile, newWPContentStr)
 		if err != nil {
 			fmt.Println("An error occured while updating the profile")
 			return true, nil, err
